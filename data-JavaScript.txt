@@ -1,0 +1,136 @@
+Преобразование данных
+Object.assign, .concat ...
+--
+Array, Set, Map, Object
+Array.map, Array.reduce, Array.filter, join(), split()
+length
+ 
+
+const schools = [
+ "BSUIR",
+ "BNTU",
+ "BSTU",
+ "BSU",
+ "MGCP"
+]
+join()
+schools.join(', ');
+ 
+//filter
+const bSchools = schools.filter(school => school[0] === "B")
+
+const cutSchool = (cut, list) => list.filter(school => school !== cut);
+
+const hightSchools = schools.map(school => `Universitet ${school}`);
+
+let schools2 = [
+{name:"BSUIR"},
+{name:"BNTU"},
+{name:"BSU"},
+{name:"XXX"},
+]
+//map
+const editName = (oldName, newName, arr=[]) => {
+	return arr.map(item => {
+		if(item.name == oldName){
+			return {...item, name:newName};
+		}else{
+			return item;
+		}
+	});
+}
+const editName3 = (oldName, name, arr=[]) => 
+ arr.map(item => (item.name == oldName) ? ({...item, name}) : item);
+ 
+const schoolA = Object.keys(schools).map(key => ({
+	name:key,
+	wins: schools[key]
+})) 
+
+//reduce reduceRight
+const ages = [12,13,15,8,8,6,14,10,9,12];
+const maxAges = ages.reduce((max, age)=>{
+	if(age>max){
+		return age;
+	}else{
+		return max;
+	}
+},0);
+const maxAges2 = ages.reduce((max, value)=>(value>max)?value:max,0);
+
+const distinctA = ages.reduce((distinct, age)=>{
+	return (distinct.indexOf(age) !== -1) ? distinct : [...distinct, age]
+},[])
+
+ФП
+стиль программирования - декларативный
+копозиционная единица  - функция
+поток управления       - функция, рекурсия, усл.операторы
+инкапсуляция           - не требуется, но возможна
+параллельное программирвание - возможно
+
+const invokeIf = (condition, fnTrue, fnFalse) => (condition) ? fnTrue() : fnFalse()
+const showWelcome = () => console.log('Welcome');
+
+const countDown = (value, fn) => {
+	fn(value);
+	return (value>0) ? countDown(value-1, fn) : value;
+}
+
+countDown(1, val => console.log(val))
+
+const dataForHTML = [
+ {
+	 type: "div",
+	 value: "some text for div",
+ },
+ {
+	 type: "div",
+	 value: {
+		 type: "span",
+		 value: "span text come here"
+	 }
+ },
+ {
+	 type: "p",
+	 value:{
+		 type:"p",
+		 value: {
+			 type: "a",
+			 value: "text for a"
+		 } 
+	 }
+ }
+];
+const htmlIn = (value) => {
+	if(typeof value.value === 'string'){
+		console.log(`<${value.type}>`);
+		console.log(value.value);
+		console.log(`</${value.type}>`);
+	}else{
+		console.log(`<${value.type}>`);
+		htmlIn(value.value);
+		console.log(`</${value.type}>`);
+	}
+}
+const arr = dataForHTML.map((value)=>{
+	htmlIn(value);
+});
+
+function zipCode(code, location){
+	return {
+		code: code,
+		location: location
+	}
+}
+
+Object.freeze()
+
+
+
+
+
+
+
+
+
