@@ -127,7 +127,16 @@ function zipCode(code, location){
 Object.freeze()
 
 
+1. Папка с проектом, локальный репозиторий git 
+проверить папку .git (удалить если надо)
+-  git init
+-  git add *
+-  git commit -m "first commit"
+-  git status
 
+2. Удалённый репозиторий
+- создать репозиторий на github.commit
+- используем подсказки из созданного репозитория
 
 
 
